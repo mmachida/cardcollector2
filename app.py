@@ -2,11 +2,12 @@ from flask import Flask, render_template_string, request, redirect, url_for
 from pymongo import MongoClient
 from datetime import timedelta
 from bson import ObjectId
+import os
 
 app = Flask(__name__)
 
 # --- Conexão MongoDB ---
-MONGO_URI = uri
+MONGO_URI = os.getenv("uri")  # pega a variável de ambiente chamada 'uri'
 client = MongoClient(MONGO_URI)
 db = client["gacha"]
 users_col = db["users"]
